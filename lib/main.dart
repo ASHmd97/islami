@@ -1,19 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:islami/screens/home_screen.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const IslamiApp());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class IslamiApp extends StatelessWidget {
+  const IslamiApp({super.key});
 
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
-      home: Scaffold(),
+      routes: {
+        HomeScreen.routeName: (_) => const HomeScreen(),
+      },
+      initialRoute: HomeScreen.routeName,
     );
   }
 }
