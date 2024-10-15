@@ -12,6 +12,19 @@ class AppTheme {
   static const Color gold = Color(0xFFFACC1D);
 
   static ThemeData lightTheme = ThemeData(
+    appBarTheme: const AppBarTheme(
+      backgroundColor: Colors.transparent,
+      centerTitle: true,
+      elevation: 0,
+      iconTheme: IconThemeData(
+        color: black,
+      ),
+      titleTextStyle: TextStyle(
+        color: black,
+        fontSize: 30,
+        fontWeight: FontWeight.bold,
+      ),
+    ),
     bottomNavigationBarTheme: const BottomNavigationBarThemeData(
       backgroundColor: lightPrimary,
       selectedItemColor: black,
@@ -21,19 +34,20 @@ class AppTheme {
       showSelectedLabels: true,
     ),
     primaryColor: lightPrimary,
-    scaffoldBackgroundColor: backgroundColor,
+    scaffoldBackgroundColor: Colors.transparent,
+    
   );
 
   static ThemeData darkTheme = ThemeData(
     bottomNavigationBarTheme: const BottomNavigationBarThemeData(
-      backgroundColor: Color(0xFF141A2E),
-      selectedItemColor: Color(0xffFACC1D),
+      backgroundColor: darkPrimary,
+      selectedItemColor: gold,
       unselectedItemColor: Colors.white,
       type: BottomNavigationBarType.fixed,
       showUnselectedLabels: false,
       showSelectedLabels: true,
     ),
     primaryColor: AppTheme.darkPrimary,
-    scaffoldBackgroundColor: AppTheme.darkBackgroundColor,
+    scaffoldBackgroundColor: Colors.transparent,
   );
 }
