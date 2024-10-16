@@ -35,10 +35,22 @@ class AppTheme {
     ),
     primaryColor: lightPrimary,
     scaffoldBackgroundColor: Colors.transparent,
-    
   );
 
   static ThemeData darkTheme = ThemeData(
+    appBarTheme: const AppBarTheme(
+      backgroundColor: Colors.transparent,
+      centerTitle: true,
+      elevation: 0,
+      iconTheme: IconThemeData(
+        color: black,
+      ),
+      titleTextStyle: TextStyle(
+        color: black,
+        fontSize: 30,
+        fontWeight: FontWeight.bold,
+      ),
+    ),
     bottomNavigationBarTheme: const BottomNavigationBarThemeData(
       backgroundColor: darkPrimary,
       selectedItemColor: gold,
