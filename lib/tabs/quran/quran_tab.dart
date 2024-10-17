@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:islami/tabs/quran/sura_content_screen.dart';
 
 class QuranTab extends StatelessWidget {
   const QuranTab({super.key});
@@ -128,6 +129,9 @@ class QuranTab extends StatelessWidget {
           'assets/images/qur2an_screen_logo.png',
           height: MediaQuery.sizeOf(context).height * 0.25,
         ),
+        const SizedBox(
+          height: 10,
+        ),
         Expanded(
           child: Stack(children: [
             Column(
@@ -141,17 +145,17 @@ class QuranTab extends StatelessWidget {
                     children: [
                       Text(
                         'عدد الآيات',
-                        style: TextStyle(
-                            color: Theme.of(context).primaryColor,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 24),
+                        style:
+                            Theme.of(context).textTheme.headlineSmall!.copyWith(
+                                  fontWeight: FontWeight.bold,
+                                ),
                       ),
                       Text(
                         'إسم السورة',
-                        style: TextStyle(
-                            color: Theme.of(context).primaryColor,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 24),
+                        style:
+                            Theme.of(context).textTheme.headlineSmall!.copyWith(
+                                  fontWeight: FontWeight.bold,
+                                ),
                       ),
                     ]),
                 Divider(
@@ -161,44 +165,66 @@ class QuranTab extends StatelessWidget {
               ],
             ),
             Container(
-              margin: const EdgeInsets.only(top: 80),
-              child: ListView.builder(
+              margin: const EdgeInsets.only(top: 70),
+              child: ListView.separated(
                 itemCount: surasWithAyahs.length,
                 itemBuilder: (context, index) {
-                  return Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      SizedBox(
-                        width: MediaQuery.sizeOf(context).width * 0.2,
-                      ),
-                      Text(
-                        surasWithAyahs[index]['ayahs'].toString(),
-                        style: const TextStyle(fontSize: 20),
-                      ),
-                      const Spacer(flex: 1),
-                      Text(
-                        surasWithAyahs[index]['name'],
-                        style: const TextStyle(fontSize: 20),
-                      ),
-                      SizedBox(
-                        width: MediaQuery.sizeOf(context).width * 0.2,
-                      ),
-                    ],
+                  return InkWell(
+                    onTap: () {
+                      Navigator.pushNamed(
+                        context,
+                        '/sura_content',
+                        arguments: SuraDataArgs(
+                            suraName: surasWithAyahs[index]['name'],
+                            suraIndex: index),
+                      );
+                    },
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        SizedBox(
+                          width: MediaQuery.sizeOf(context).width * 0.2,
+                        ),
+                        Text(
+                          surasWithAyahs[index]['ayahs'].toString(),
+                          style: Theme.of(context).textTheme.headlineSmall,
+                        ),
+                        const Spacer(flex: 1),
+                        Text(
+                          surasWithAyahs[index]['name'],
+                          style: Theme.of(context).textTheme.headlineSmall,
+                        ),
+                        SizedBox(
+                          width: MediaQuery.sizeOf(context).width * 0.2,
+                        ),
+                      ],
+                    ),
+                  );
+                },
+                separatorBuilder: (context, index) {
+                  return SizedBox(
+                    height: MediaQuery.sizeOf(context).height * 0.02,
                   );
                 },
               ),
             ),
-            Align(
-                alignment: Alignment.bottomCenter,
+            Center(
                 child: VerticalDivider(
-                  color: Theme.of(context).primaryColor,
-                  thickness: 3,
-                  indent: 6,
-                )),
+              color: Theme.of(context).primaryColor,
+              thickness: 3,
+              indent: 7,
+            )),
           ]),
         )
       ],
     );
   }
+}
+
+class SuraDataArgs {
+  final String suraName;
+  final int suraIndex;
+
+  SuraDataArgs({required this.suraName, required this.suraIndex});
 }
